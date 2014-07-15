@@ -11,4 +11,7 @@ println("\n Running dataset tests\n")
 ## testing not yet loaded data
 @test_throws Exception EconDatasets.dataset("SP500")
 
+## try loading sector data
+sectors = EconDatasets.dataset("Sectors")
+
 end
