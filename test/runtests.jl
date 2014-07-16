@@ -32,19 +32,27 @@ currentPath = pwd()
 ijuliaPath = joinpath(Pkg.dir("EconDatasets"), "ijulia")
 cd(ijuliaPath)
 
-for f in ijuliaFileNames
-    run(`ipython nbconvert $(f).ipynb --to python`)
-    run(`mv $(f).py ../test/$(f).jl`)
+ipythonInstalled = true
+try
+    for f in ijuliaFileNames
+        run(`ipython nbconvert $(f).ipynb --to python`)
+        run(`mv $(f).py ../test/$(f).jl`)
+    end
+catch
+    println("no ipython installed")
+    ipythonInstalled = false
 end
 
-for f in ijuliaFileNames
-    println()
-    println(" Running $f test")
-    println()
-    println("--------------------------------")
-    println("--------------------------------")
-    println()
-    include("$f.jl")
+if ipythonInstalled
+    for f in ijuliaFileNames
+        println()
+        println(" Running $f test")
+        println()
+        println("--------------------------------")
+        println("--------------------------------")
+        println()
+        include("$f.jl")
+    end
 end
 
 cd(currentPath)
