@@ -114,10 +114,13 @@ adequately.
 
 * Table of functions to interactively download data
 
-| Name                | Description |
-|---------------------+-------------|
-| ~readFamaFrench~    |             |
-| ~readRawFamaFrench~ |             |
+| Name                | Description        |
+|---------------------+--------------------|
+| ~readFamaFrench~    |                    |
+| ~readFamaFrenchRaw~ | see [[http://nbviewer.ipython.org/github/JuliaFinMetriX/EconDatasets.jl/blob/master/ijulia/readFamaFrenchRaw.ipynb][ijulia example]] |
+
+
+
 
 * Acknowledgement
 
