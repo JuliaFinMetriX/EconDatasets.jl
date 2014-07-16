@@ -70,8 +70,54 @@ println("\n Running documentation tests\n")
 
 #+END_SRC
 
-* Getting started
+* Motivation
 
+The package shall make various econometric data sets accessible,
+similar to the way that the [[https://github.com/johnmyleswhite/RDatasets.jl][RDatasets]] package provides access to
+standard data sets that are available in R.
+
+The problem with some econometric data sets, however, is that although
+data is freely available at the web, it is not allowed to redistribute
+the data set. Hence, some of the data sets are not shipped
+automatically with the package, but they need to be downloaded into
+the package's data directory first.
+
+Once a given data set is downloaded, it can be loaded in Julia with a
+syntax similar to ~RDatasets~:
+
+#+BEGIN_SRC julia
+using EconDatasets
+sectors = dataset("Sectors")
+#+END_SRC
+
+In order to download a given data set, one needs to use call function
+~getDataset~ first. This way, data is downloaded into the data
+directory of the package, making it accessible for future use with
+function ~dataset~.
+#+BEGIN_SRC julia
+getDataset("SP500")
+#+END_SRC
+
+In addition, there also exist functions that directly load data into
+an interactive Julia session, without storing them on disk for future
+use. For some of these data sets, however, some minor manual
+interaction might be required to label and process the data
+adequately. 
+
+
+* Table of data sets
+
+| Name    | Description                              |
+|---------+------------------------------------------|
+| Sectors | Sector affiliations for SP500 components |
+|         |                                          |
+
+* Table of functions to interactively download data
+
+| Name                | Description |
+|---------------------+-------------|
+| ~readFamaFrench~    |             |
+| ~readRawFamaFrench~ |             |
 
 * Acknowledgement
 
