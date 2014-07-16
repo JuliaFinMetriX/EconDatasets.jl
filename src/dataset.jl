@@ -18,7 +18,7 @@ function dataset(dataset_name::String)
     
     if !isfile(filename)
         error(string("Unable to locate file $filename - ",
-                     "try getData(\"$dataset_name\") instead \n"))
+                     "try getDataset(\"$dataset_name\") instead \n"))
     else
         completeCmd = Expr(:(=), :dataVals, cmd)
         eval(completeCmd)
