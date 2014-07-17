@@ -5,8 +5,9 @@ using Base.Test
 using DataFrames
 
 # write your own tests here
-tests = ["dataset.jl",
-         "getDataset.jl"]
+tests = [
+         "getDataset.jl",
+         "dataset.jl"]
 
 println("Running EconDatasets tests:")
 
