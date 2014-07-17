@@ -11,10 +11,12 @@ using Datetime
 using TimeData
 
 export dataset,
-	## getDataset,
+	getDataset,
 	readFamaFrenchRaw
 
 include("dataset.jl")
+include("getDataset.jl")
 include("readFamaFrenchRaw.jl")
+include("getFamaFrench.jl")
 
 end # module
