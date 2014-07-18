@@ -84,6 +84,7 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
+<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
 <meta charset='utf-8'>
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -201,8 +202,8 @@ syntax similar to <code>RDatasets</code>:
 
 <div class="org-src-container">
 
-<pre class="src src-julia"><span style="color: #ff0000;">using</span> EconDatasets
-sectors = <span style="color: #00ffff;">dataset</span>(<span style="color: #00ff00;">"Sectors"</span>)
+<pre class="src src-julia">using EconDatasets
+sectors = dataset("Sectors")
 </pre>
 </div>
 
@@ -214,7 +215,7 @@ function <code>dataset</code>.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-julia"><span style="color: #00ffff;">getDataset</span>(<span style="color: #00ff00;">"SP500"</span>)
+<pre class="src src-julia">getDataset("SP500")
 </pre>
 </div>
 
