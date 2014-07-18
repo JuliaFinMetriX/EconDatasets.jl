@@ -5,7 +5,9 @@ using Base.Test
 using DataFrames
 
 # write your own tests here
-tests = ["dataset.jl"]
+tests = [
+         "getDataset.jl",
+         "dataset.jl"]
 
 println("Running EconDatasets tests:")
 
@@ -20,13 +22,10 @@ end
 
 ijuliaFileNames = [readFamaFrenchRaw]
 
-println("Running documentation application tests:")
-println()
-println(" Converting ijulia notebooks to test scripts")
-println()
+println("Running documentation application tests:\n")
+println(" Converting ijulia notebooks to test scripts\n")
 println("--------------------------------")
-println("--------------------------------")
-println()
+println("--------------------------------\n")
 
 currentPath = pwd()
 ijuliaPath = joinpath(Pkg.dir("EconDatasets"), "ijulia")
@@ -45,12 +44,9 @@ end
 
 if ipythonInstalled
     for f in ijuliaFileNames
-        println()
-        println(" Running $f test")
-        println()
+        println("\n Running $f test\n")
         println("--------------------------------")
-        println("--------------------------------")
-        println()
+        println("--------------------------------\n")
         include("$f.jl")
     end
 end
