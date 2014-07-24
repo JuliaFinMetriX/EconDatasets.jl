@@ -14,4 +14,10 @@ println("\n Running dataset tests\n")
 ## try loading sector data
 sectors = EconDatasets.dataset("Sectors")
 
+## try loading fama french data
+umd = EconDatasets.dataset("UMD")
+fff = EconDatasets.dataset("FFF")
+
+
+
 end
