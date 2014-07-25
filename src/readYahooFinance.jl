@@ -1,7 +1,8 @@
-function readYahooFinance(dates::DateRange{ISOCalendar},
+@debug function readYahooFinance(dates::DateRange{ISOCalendar},
                           ticker::Array{ASCIIString, 1},
                           freq=:d)
-    
+
+    @bp
     #############################
     ## get download parameters ##
     #############################
@@ -16,16 +17,25 @@ function readYahooFinance(dates::DateRange{ISOCalendar},
     ## download data ##
     ###################
     
-    vals = Array(AbstractTimenum, nStocks)
+    td = download(urls[1]) |>
+    readTimedata |>
+    flipud
     
-    for ii=1:nStocks
+    tdAll = td[:Adj_Close]
+    
+    for ii=2:nStocks
         
-        filepath = download(urls[ii])
-        td = readTimedata(filepath)
-        
-        vals[ii] = flipud(td)
+        td = download(urls[ii]) |>
+        readTimedata |>
+        flipud
+
+        tdAll = joinSortedIdx_outer(tdAll, td[:Adj_Close])
     end
-    vals
+
+    ## get ticker symbols
+    tickerSymb = Symbol[symbol(tick) for tick in ticker]
+    names!(tdAll.vals, tickerSymb)
+    tdAll
 end
 
 function readYahooFinance(dates::DateRange{ISOCalendar},
@@ -89,11 +99,6 @@ end
 ## test cases ##
 ################
 
-dates = date(1960, 11, 26):date(2014, 7, 23)
-ticker = "^GDAXI"
-ticker = ["^GDAXI", "^GSPC", "BMW.DE"]
-
-kk = readYahooFinance(dates, ticker, :w)
 
 
 ## one function that returns complete data for single ticker
@@ -102,4 +107,4 @@ kk = readYahooFinance(dates, ticker, :w)
 ## another function that returns adj_closing prices for array of
 ## ticker symbols in one large
 
-kk = map((x) -> readYahooFinance(dates, [x]), ticker)
+
