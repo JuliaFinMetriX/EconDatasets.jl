@@ -17,6 +17,7 @@ export dataset,
 include("dataset.jl")
 include("getDataset.jl")
 include("readFamaFrenchRaw.jl")
+include("readYahooFinance.jl")
 include("getFamaFrench.jl")
 
 end # module
