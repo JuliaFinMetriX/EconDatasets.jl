@@ -1,8 +1,7 @@
-@debug function readYahooFinance(dates::DateRange{ISOCalendar},
+function readYahooFinance(dates::DateRange{ISOCalendar},
                           ticker::Array{ASCIIString, 1},
                           freq=:d)
 
-    @bp
     #############################
     ## get download parameters ##
     #############################
