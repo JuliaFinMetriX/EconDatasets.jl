@@ -1,3 +1,4 @@
+
 function readYahooFinance(dates::StepRange,
                           ticker::Array{ASCIIString, 1},
                           freq=:d)
