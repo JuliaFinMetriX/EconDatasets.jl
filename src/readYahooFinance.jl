@@ -1,4 +1,4 @@
-function readYahooFinance(dates::DateRange{ISOCalendar},
+function readYahooFinance(dates::StepRange,
                           ticker::Array{ASCIIString, 1},
                           freq=:d)
 
@@ -37,7 +37,7 @@ function readYahooFinance(dates::DateRange{ISOCalendar},
     tdAll
 end
 
-function readYahooFinance(dates::DateRange{ISOCalendar},
+function readYahooFinance(dates::StepRange,
                           ticker::ASCIIString,
                           freq=:d)
     
@@ -57,7 +57,7 @@ function readYahooFinance(dates::DateRange{ISOCalendar},
     vals = flipud(td)
 end
 
-function getUrls(dates::DateRange{ISOCalendar},
+function getUrls(dates::StepRange,
                  ticker::Array{ASCIIString, 1},
                  freq)
     nStocks = length(ticker)
@@ -75,7 +75,7 @@ function getUrls(dates::DateRange{ISOCalendar},
     urls
 end
 
-function getDates(dates::DateRange{ISOCalendar})
+function getDates(dates::StepRange)
     ## get start and end date
     startDate = dates[1]
     endDate = dates[end]

@@ -41,12 +41,12 @@ end
 function processDailyDate(datesArr)
     # 20030308 as string to date
     nObs = length(datesArr)
-    dates = Array(Date{ISOCalendar}, nObs)
+    dates = Array(Date, nObs)
     for ii=1:nObs
         yyyy = datesArr[ii][1:4]
         mm = datesArr[ii][5:6]
         dd = datesArr[ii][7:8]
-        dates[ii] = date(int(yyyy), int(mm), int(dd))
+        dates[ii] = Date(int(yyyy), int(mm), int(dd))
     end
     return dates
 end
@@ -54,13 +54,13 @@ end
 function processMonthlyDate(datesArr)
     # 200301 as string to date
     nObs = length(datesArr)
-    dates = Array(Date{ISOCalendar}, nObs)
+    dates = Array(Date, nObs)
     for ii=1:nObs
         yyyy = datesArr[ii][1:4]
         mm = datesArr[ii][5:6]
-        datesBeginMonth = date(int(yyyy), int(mm), 01)
+        datesBeginMonth = Date(int(yyyy), int(mm), 01)
         dd = lastdayofmonth(datesBeginMonth)
-        dates[ii] = date(int(yyyy), int(mm), dd)
+        dates[ii] = Date(int(yyyy), int(mm), dd)
     end
     return dates
 end
@@ -68,9 +68,9 @@ end
 function processYearlyDate(datesArr)
     # 2003 as string to date
     nObs = length(datesArr)
-    dates = Array(Date{ISOCalendar}, nObs)
+    dates = Array(Date, nObs)
     for ii=1:nObs
-        dates[ii] = date(int(datesArr[ii]), 12, 31)
+        dates[ii] = Date(int(datesArr[ii]), 12, 31)
     end
     return dates
 end
