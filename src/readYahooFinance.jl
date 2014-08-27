@@ -1,41 +1,27 @@
-
-function readYahooFinance(dates::StepRange,
+function readYahooAdjClose(dates::StepRange,
                           ticker::Array{ASCIIString, 1},
                           freq=:d)
 
-    #############################
-    ## get download parameters ##
-    #############################
+    ## parallelized version for multiple stocks
     
-    ## get number of tickers
     nStocks = length(ticker)
-    
-    ## get download urls
-    urls = getUrls(dates, ticker, freq)
-    
-    ###################
-    ## download data ##
-    ###################
-    
-    td = download(urls[1]) |>
-    readTimedata |>
-    flipud
-    
-    tdAll = td[:Adj_Close]
-    
-    for ii=2:nStocks
-        
-        td = download(urls[ii]) |>
-        readTimedata |>
-        flipud
-
-        tdAll = joinSortedIdx_outer(tdAll, td[:Adj_Close])
+    allStocks = @parallel (joinSortedIdx_outer) for ii=1:nStocks
+        getAdjClose(dates, ticker[ii], freq)
     end
+        
+    return allStocks
+end
 
-    ## get ticker symbols
-    tickerSymb = Symbol[symbol(tick) for tick in ticker]
-    names!(tdAll.vals, tickerSymb)
-    tdAll
+function getAdjClose(dates::StepRange,
+                            ticker::ASCIIString,
+                            freq=:d)
+    stock = readYahooFinance(dates, ticker, freq)
+
+    ## refine stock
+    adjClose = stock[:Adj_Close]
+    names!(adjClose.vals, [symbol(ticker)])
+
+    return adjClose
 end
 
 function readYahooFinance(dates::StepRange,
