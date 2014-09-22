@@ -2,7 +2,7 @@ function dataset(dataset_name::String)
     basename = Pkg.dir("EconDatasets", "data")
 
     ## resolve key names and required package
-    fileDict = ["SP500" => "all_sp500_clean_logRet_jl.csv", 
+    fileDict = ["SP500" => "SP500.csv", 
                 "Sectors" => "sectorAffiliation.csv",
                 "UMD" => "UMD.csv",
                 "FFF" => "FFF.csv"
