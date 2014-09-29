@@ -12,7 +12,9 @@ using TimeData
 
 export dataset,
 	getDataset,
-	readFamaFrenchRaw
+	readFamaFrenchRaw,
+   readYahooAdjClose,
+   readYahooFinance
 
 include("dataset.jl")
 include("getDataset.jl")
