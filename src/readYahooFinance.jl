@@ -18,8 +18,12 @@ function getAdjClose(dates::StepRange,
     stock = readYahooFinance(dates, ticker, freq)
 
     ## refine stock
-    adjClose = stock[:Adj_Close]
-    names!(adjClose.vals, [symbol(ticker)])
+    if isequal(stock, NA)
+        adjClose = Timenum(DataFrame(Adj_Close = NA), [dates[end]])
+    else
+        adjClose = stock[:Adj_Close]
+        names!(adjClose.vals, [symbol(ticker)])
+    end
 
     return adjClose
 end
@@ -38,10 +42,14 @@ function readYahooFinance(dates::StepRange,
     ###################
     ## download data ##
     ###################
-    
-    filepath = download(urls[1])
-    td = readTimedata(filepath)
-    vals = flipud(td)
+
+    try
+        filepath = download(urls[1])
+        td = readTimedata(filepath)
+        vals = flipud(td)
+    catch
+        vals = NA
+    end
 end
 
 function getUrls(dates::StepRange,
