@@ -173,9 +173,10 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">1. Motivation</a></li>
-<li><a href="#sec-2">2. Main data sets</a></li>
-<li><a href="#sec-3">3. Interactively accessible data sets</a></li>
-<li><a href="#sec-4">4. Licensing and intellectual property</a></li>
+<li><a href="#sec-2">2. Table of data sets</a></li>
+<li><a href="#sec-3">3. Data sets to be downloaded first</a></li>
+<li><a href="#sec-4">4. Table of functions to interactively download data</a></li>
+<li><a href="#sec-5">5. Acknowledgement</a></li>
 </ul>
 </div>
 </div>
@@ -191,10 +192,10 @@ standard data sets that are available in R.
 
 <p>
 The problem with some econometric data sets, however, is that although
-data is freely available on the web, it is not allowed to redistribute
-it. Hence, some of the data sets are not shipped automatically with
-the package, but they need to be downloaded into the package's data
-directory first.
+data is freely available at the web, it is not allowed to redistribute
+the data set. Hence, some of the data sets are not shipped
+automatically with the package, but they need to be downloaded into
+the package's data directory first.
 </p>
 
 <p>
@@ -210,14 +211,14 @@ sectors = dataset("Sectors")
 </div>
 
 <p>
-For any data that does not automatically ship with the package, one
-needs to call <code>getDataset</code> first in order to download the data into
-the package's data directory. This way it will be accessible for
-future use through function <code>dataset</code> again.
+In order to download a given data set, one needs to use call function
+<code>getDataset</code> first. This way, data is downloaded into the data
+directory of the package, making it accessible for future use with
+function <code>dataset</code>.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-julia">getDataset("SP500")
+<pre class="src src-julia">getDataset("FFF") # Fama French factors
 </pre>
 </div>
 
@@ -225,49 +226,178 @@ future use through function <code>dataset</code> again.
 In addition, there also exist functions that directly load data into
 an interactive Julia session, without storing them on disk for future
 use. For some of these data sets, however, some minor manual
-interaction might be required to label and process the data correctly.
+interaction might be required to label and process the data
+adequately. 
 </p>
 </div>
 </div>
 
 
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Main data sets</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> Table of data sets</h2>
 <div class="outline-text-2" id="text-2">
-<p>
-The following data sets are accessible through function <code>dataset</code>. 
-</p>
-<ul class="org-ul">
-<li><code>Sectors</code>: sector affiliations for SP500 components
-</li>
-</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Name</th>
+<th scope="col" class="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">Sectors</td>
+<td class="left">Sector affiliations for SP500 components</td>
+</tr>
+
+<tr>
+<td class="left">SP500</td>
+<td class="left">Stock price data for SP500 components</td>
+</tr>
+
+<tr>
+<td class="left">UMD</td>
+<td class="left">Fama French momentum portfolio</td>
+</tr>
+
+<tr>
+<td class="left">FFF</td>
+<td class="left">Fama French factors</td>
+</tr>
+
+<tr>
+<td class="left">SP500Ticker</td>
+<td class="left">SP500 ticker symbols from Wikipedia</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Interactively accessible data sets</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> Data sets to be downloaded first</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-In addition, the following functions can be used to interactively
-download various data sets.  
+The following data sets do not ship with the package, as they may not
+be re-distributed. Hence, they need to be downloaded first. This can
+be done with function <code>getDataset</code>. Some of these data sets will call
+a script and not a function, so they will create some variables in
+your workspace. Also, if running the scripts through the high level
+function <code>getDataset</code> causes an error, it still might work if you run
+the script with <code>include</code>:
 </p>
+
+<div class="org-src-container">
+
+<pre class="src src-julia">include(joinpath(Pkg.dir("EconDatasets"), "src/getDataset/", "getSP500.jl"))
+</pre>
+</div>
+
 <ul class="org-ul">
-<li><code>readFamaFrenchRaw</code>: data provided by <a href="http://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">Kenneth R. French</a> (<a href="http://nbviewer.ipython.org/github/JuliaFinMetriX/EconDatasets.jl/blob/master/ijulia/readFamaFrenchRaw.ipynb">ijulia
-usage instructions</a>) 
+<li>Data sets downloaded by functions
+<ul class="org-ul">
+<li>FFF
+</li>
+<li>UMD
+</li>
+</ul>
+</li>
+<li>Data sets downloaded by scripts
+<ul class="org-ul">
+<li>SP500
+</li>
+<li>SP500Ticker
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Licensing and intellectual property</h2>
+<h2 id="sec-4"><span class="section-number-2">4</span> Table of functions to interactively download data</h2>
 <div class="outline-text-2" id="text-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Name</th>
+<th scope="col" class="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left"><code>readFamaFrench</code></td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left"><code>readFamaFrenchRaw</code></td>
+<td class="left">see <a href="http://nbviewer.ipython.org/github/JuliaFinMetriX/EconDatasets.jl/blob/master/ijulia/readFamaFrenchRaw.ipynb">ijulia example</a></td>
+</tr>
+
+<tr>
+<td class="left"><code>readYahooFinance</code></td>
+<td class="left">see <a href="http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/">blog post</a></td>
+</tr>
+
+<tr>
+<td class="left"><code>readYahooAdjClose</code></td>
+<td class="left">see <a href="http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/">blog post</a></td>
+</tr>
+
+<tr>
+<td class="left"><code>getAdjClose</code></td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Acknowledgement</h2>
+<div class="outline-text-2" id="text-5">
 <p>
-Similar to <a href="https://github.com/johnmyleswhite/RDatasets.jl">RDatasets</a>: If you know that one of the datasets released
-here should not be released publicly or if you know that a data set
-can only be released under a different license, please contact me so
-that I can remove the data set from this repository.
+Of course, any package can only be as good as the individual parts
+that it builds on. Accordingly, I'd like to thank all people that
+were involved in the development of all the functions that were made
+ready to use for me to build this package upon. In particular, I want
+to thank the developers of
 </p>
+<ul class="org-ul">
+<li>the <b>Julia language</b>, for their continuous and tremendous efforts
+during the creation of this free, fast and highly flexible
+programming language!
+</li>
+<li>the <b>DataFrames</b> package, which definitely provides the best
+representation for general types of data in data analysis. It's a
+role model that every last bit of code of <code>TimeData</code> depends on, and
+the interface that every statistics package should use.
+</li>
+<li>the <b>Datetime</b> package, which is a thoughtful implementation of
+dates, time and durations, and the backbone of all time components
+in <code>TimeData</code>.
+</li>
+<li>the <b>TimeSeries</b> package, which follows a different approach to
+handling time series data. Having a quite similar goal in mind, the
+package was a great inspiration for me, and occasionally I even
+could borrow parts of code from it (for example, from an old version
+of function <code>readtime</code>).
+</li>
+</ul>
 </div>
 </div>
 </div>
