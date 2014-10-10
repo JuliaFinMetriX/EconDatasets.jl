@@ -5,7 +5,8 @@ function dataset(dataset_name::String)
     fileDict = ["SP500" => "SP500.csv", 
                 "Sectors" => "sectorAffiliation.csv",
                 "UMD" => "UMD.csv",
-                "FFF" => "FFF.csv"
+                "FFF" => "FFF.csv",
+                "SP500Ticker" => "SP500TickerSymbols.csv"
                 ]
 
     ## get filename
@@ -15,7 +16,8 @@ function dataset(dataset_name::String)
     cmdDict = ["SP500" => :(readTimedata($filename)),
                "Sectors" => :(readtable($filename , separator = ' ')),
                "UMD" => :(readTimedata($filename)),
-               "FFF" => :(readTimedata($filename))
+               "FFF" => :(readTimedata($filename)),
+               "SP500Ticker" => :(readcsv($filename))
                ]
 
     cmd = cmdDict[dataset_name]

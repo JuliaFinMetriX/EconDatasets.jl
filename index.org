@@ -96,7 +96,7 @@ In order to download a given data set, one needs to use call function
 directory of the package, making it accessible for future use with
 function ~dataset~.
 #+BEGIN_SRC julia
-getDataset("SP500")
+getDataset("FFF") # Fama French factors
 #+END_SRC
 
 In addition, there also exist functions that directly load data into
@@ -108,10 +108,34 @@ adequately.
 
 * Table of data sets
 
-| Name    | Description                              |
-|---------+------------------------------------------|
-| Sectors | Sector affiliations for SP500 components |
-|         |                                          |
+| Name        | Description                              |
+|-------------+------------------------------------------|
+| Sectors     | Sector affiliations for SP500 components |
+| SP500       | Stock price data for SP500 components    |
+| UMD         | Fama French momentum portfolio           |
+| FFF         | Fama French factors                      |
+| SP500Ticker | SP500 ticker symbols from Wikipedia      |
+
+* Data sets to be downloaded first
+
+The following data sets do not ship with the package, as they may not
+be re-distributed. Hence, they need to be downloaded first. This can
+be done with function ~getDataset~. Some of these data sets will call
+a script and not a function, so they will create some variables in
+your workspace. Also, if running the scripts through the high level
+function ~getDataset~ causes an error, it still might work if you run
+the script with ~include~:
+
+#+BEGIN_SRC julia
+include(joinpath(Pkg.dir("EconDatasets"), "src/getDataset/", "getSP500.jl"))
+#+END_SRC
+
+- Data sets downloaded by functions
+  - FFF
+  - UMD
+- Data sets downloaded by scripts
+  - SP500
+  - SP500Ticker
 
 * Table of functions to interactively download data
 
@@ -119,9 +143,9 @@ adequately.
 |---------------------+--------------------|
 | ~readFamaFrench~    |                    |
 | ~readFamaFrenchRaw~ | see [[http://nbviewer.ipython.org/github/JuliaFinMetriX/EconDatasets.jl/blob/master/ijulia/readFamaFrenchRaw.ipynb][ijulia example]] |
-
-
-
+| ~readYahooFinance~  | see [[http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/][blog post]]      |
+| ~readYahooAdjClose~ | see [[http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/][blog post]]      |
+| ~getAdjClose~       |                    |
 
 * Acknowledgement
 

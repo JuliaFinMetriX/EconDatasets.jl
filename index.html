@@ -53,6 +53,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -122,7 +124,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012  Free Software Foundation, Inc.
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -172,8 +174,9 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#sec-1">1. Motivation</a></li>
 <li><a href="#sec-2">2. Table of data sets</a></li>
-<li><a href="#sec-3">3. Table of functions to interactively download data</a></li>
-<li><a href="#sec-4">4. Acknowledgement</a></li>
+<li><a href="#sec-3">3. Data sets to be downloaded first</a></li>
+<li><a href="#sec-4">4. Table of functions to interactively download data</a></li>
+<li><a href="#sec-5">5. Acknowledgement</a></li>
 </ul>
 </div>
 </div>
@@ -215,7 +218,7 @@ function <code>dataset</code>.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-julia">getDataset("SP500")
+<pre class="src src-julia">getDataset("FFF") # Fama French factors
 </pre>
 </div>
 
@@ -228,6 +231,7 @@ adequately.
 </p>
 </div>
 </div>
+
 
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2"><span class="section-number-2">2</span> Table of data sets</h2>
@@ -253,16 +257,72 @@ adequately.
 </tr>
 
 <tr>
-<td class="left">&#xa0;</td>
-<td class="left">&#xa0;</td>
+<td class="left">SP500</td>
+<td class="left">Stock price data for SP500 components</td>
+</tr>
+
+<tr>
+<td class="left">UMD</td>
+<td class="left">Fama French momentum portfolio</td>
+</tr>
+
+<tr>
+<td class="left">FFF</td>
+<td class="left">Fama French factors</td>
+</tr>
+
+<tr>
+<td class="left">SP500Ticker</td>
+<td class="left">SP500 ticker symbols from Wikipedia</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Table of functions to interactively download data</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> Data sets to be downloaded first</h2>
 <div class="outline-text-2" id="text-3">
+<p>
+The following data sets do not ship with the package, as they may not
+be re-distributed. Hence, they need to be downloaded first. This can
+be done with function <code>getDataset</code>. Some of these data sets will call
+a script and not a function, so they will create some variables in
+your workspace. Also, if running the scripts through the high level
+function <code>getDataset</code> causes an error, it still might work if you run
+the script with <code>include</code>:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-julia">include(joinpath(Pkg.dir("EconDatasets"), "src/getDataset/", "getSP500.jl"))
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Data sets downloaded by functions
+<ul class="org-ul">
+<li>FFF
+</li>
+<li>UMD
+</li>
+</ul>
+</li>
+<li>Data sets downloaded by scripts
+<ul class="org-ul">
+<li>SP500
+</li>
+<li>SP500Ticker
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Table of functions to interactively download data</h2>
+<div class="outline-text-2" id="text-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -287,16 +347,29 @@ adequately.
 <td class="left"><code>readFamaFrenchRaw</code></td>
 <td class="left">see <a href="http://nbviewer.ipython.org/github/JuliaFinMetriX/EconDatasets.jl/blob/master/ijulia/readFamaFrenchRaw.ipynb">ijulia example</a></td>
 </tr>
+
+<tr>
+<td class="left"><code>readYahooFinance</code></td>
+<td class="left">see <a href="http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/">blog post</a></td>
+</tr>
+
+<tr>
+<td class="left"><code>readYahooAdjClose</code></td>
+<td class="left">see <a href="http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/">blog post</a></td>
+</tr>
+
+<tr>
+<td class="left"><code>getAdjClose</code></td>
+<td class="left">&#xa0;</td>
+</tr>
 </tbody>
 </table>
 </div>
 </div>
 
-
-
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Acknowledgement</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Acknowledgement</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 Of course, any package can only be as good as the individual parts
 that it builds on. Accordingly, I'd like to thank all people that
@@ -329,7 +402,7 @@ of function <code>readtime</code>).
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 23.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.7)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
