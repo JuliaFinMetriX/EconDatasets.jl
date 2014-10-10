@@ -20,6 +20,8 @@ include("dataset.jl")
 include("getDataset.jl")
 include("readFamaFrenchRaw.jl")
 include("readYahooFinance.jl")
-include("getFamaFrench.jl")
+include("getDataset/getFFF.jl")
+include("getDataset/getUMD.jl")
+## include("getDataset/getSP500.jl")
 
 end # module
