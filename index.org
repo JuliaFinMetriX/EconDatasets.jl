@@ -142,7 +142,7 @@ include(joinpath(Pkg.dir("EconDatasets"), "src/getDataset/", "getSP500.jl"))
 | Name                | Description        |
 |---------------------+--------------------|
 | ~readFamaFrench~    |                    |
-| ~readFamaFrenchRaw~ | see [[http://nbviewer.ipython.org/github/JuliaFinMetriX/EconDatasets.jl/blob/master/ijulia/readFamaFrenchRaw.ipynb][ijulia example]] |
+| ~readFamaFrenchRaw~ | see [[http://nbviewer.ipython.org/github/JuliaFinMetriX/EconDatasets.jl/blob/master/ijulia_tutorials/readFamaFrenchRaw.ipynb][ijulia example]] |
 | ~readYahooFinance~  | see [[http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/][blog post]]      |
 | ~readYahooAdjClose~ | see [[http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/][blog post]]      |
 | ~getAdjClose~       |                    |
