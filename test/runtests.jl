@@ -1,4 +1,4 @@
-module TestEconDatasets
+## module TestEconDatasets
 
 using EconDatasets
 using Base.Test
@@ -17,4 +17,4 @@ for t in tests
     include(string(Pkg.dir("EconDatasets"), "/test/", t))
 end
 
-end
+## end
