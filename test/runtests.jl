@@ -6,10 +6,11 @@ using DataFrames
 
 # write your own tests here
 tests = [
-         "getDataset.jl",
-         "dataset.jl",
          "readYahooFinance.jl",
-         "runtests_ijulia.jl"]
+         "runtests_ijulia.jl",
+         "getDataset.jl", # time consuming
+         "dataset.jl"
+         ]
 
 println("Running EconDatasets tests:")
 
