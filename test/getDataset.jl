@@ -22,6 +22,14 @@ println("--------------------------------")
 println("--------------------------------\n")
 getDataset("SP500Ticker")
 
+println("\n   test getting index prices\n")
+println("--------------------------------")
+println("--------------------------------\n")
+## include(joinpath(Pkg.dir("EconDatasets"), "src/getDataset/",
+                 ## "getIndices.jl"))
+getDataset("Indices")
+
+
 println("\n   test getting SP500\n")
 println("--------------------------------")
 println("--------------------------------\n")

@@ -1,13 +1,14 @@
 function getDataset(dataset_name::String)
     pathToScripts = joinpath(Pkg.dir("EconDatasets"), "src/getDataset/")
 
-        ## resolve key names and required package
+    ## resolve key names and required package
     fileDict = ["FFF" => :(EconDatasets.getFFF()),
                 "UMD" => :(EconDatasets.getUMD()),
                 "SP500" => :(include(string($pathToScripts,
                                             "getSP500.jl"))),
                 "SP500Ticker" => :(include(string($pathToScripts,
-                                                  "getSP500TickerSymbols.jl")))
+                                                  "getSP500TickerSymbols.jl"))),
+                "Indices" => :(EconDatasets.getIndices())
                 ]
 
     downloadFunc = fileDict[dataset_name]
