@@ -59,8 +59,9 @@ function processMonthlyDate(datesArr)
         yyyy = datesArr[ii][1:4]
         mm = datesArr[ii][5:6]
         datesBeginMonth = Date(int(yyyy), int(mm), 01)
-        dd = lastdayofmonth(datesBeginMonth)
-        dates[ii] = Date(int(yyyy), int(mm), dd)
+        ## dd = lastdayofmonth(datesBeginMonth)
+        ## dates[ii] = Date(int(yyyy), int(mm), dd)
+        dates[ii] = lastdayofmonth(datesBeginMonth)
     end
     return dates
 end
