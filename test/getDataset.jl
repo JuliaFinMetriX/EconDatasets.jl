@@ -1,9 +1,10 @@
-module TestGetDatasets
+## module TestGetDatasets # no module because of parallel computing
 
 using EconDatasets
 using Base.Test
 using DataFrames
 
+## try to get all data sets
 println("\n Running getDataset tests:")
 
 println("\n   test getting FFF\n")
@@ -16,4 +17,15 @@ println("--------------------------------")
 println("--------------------------------\n")
 getDataset("UMD")
 
-end
+println("\n   test getting SP500Ticker\n")
+println("--------------------------------")
+println("--------------------------------\n")
+getDataset("SP500Ticker")
+
+println("\n   test getting SP500\n")
+println("--------------------------------")
+println("--------------------------------\n")
+include(joinpath(Pkg.dir("EconDatasets"), "src/getDataset/", "getSP500.jl"))
+
+
+## end
