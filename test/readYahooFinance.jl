@@ -4,9 +4,6 @@ using Base.Test
 using EconDatasets
 using Debug
 
-include("/home/chris/.julia/v0.3/EconDatasets/src/readYahooFinance.jl")
-include("/home/chris/.julia/v0.3/TimeData/src/join.jl")
-
 dates = date(1960, 11, 26):date(2014, 7, 23)
 ticker = "^GDAXI"
 

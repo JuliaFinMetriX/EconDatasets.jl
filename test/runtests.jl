@@ -8,6 +8,7 @@ using DataFrames
 tests = [
          "getDataset.jl",
          "dataset.jl",
+         "readYahooFinance.jl",
          "runtests_ijulia.jl"]
 
 println("Running EconDatasets tests:")
