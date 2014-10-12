@@ -22,8 +22,8 @@ function getAdjClose(dates::StepRange,
         adjClose = Timenum(DataFrame(Adj_Close = NA), [dates[end]])
     else
         adjClose = stock[:Adj_Close]
-        names!(adjClose.vals, [symbol(ticker)])
     end
+    names!(adjClose.vals, [symbol(ticker)])
 
     return adjClose
 end

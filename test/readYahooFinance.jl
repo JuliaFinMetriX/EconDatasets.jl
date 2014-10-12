@@ -3,7 +3,7 @@ module TestDataset
 using Base.Test
 using EconDatasets
 
-dates = date(1960, 11, 26):date(2014, 7, 23)
+dates = Date(1960, 11, 26):Date(2014, 7, 23)
 ticker = "^GDAXI"
 
 ## read in single ticker
@@ -14,9 +14,8 @@ ticker = ["^GDAXI", "^GSPC", "BMW.DE"]
 kk = map((x) -> readYahooFinance(dates, x), ticker)
 
 ## read adjusted closing prices for multiple ticker symbols
-dates = date(1960, 11, 26):date(2014, 7, 23)
+dates = Date(1960, 11, 26):Date(2014, 7, 23)
 ticker = ["^GDAXI", "^GSPC", "BMW.DE"]
-tickerSymb = Symbol[symbol(tick) for tick in ticker]
-vals = readYahooFinance(dates, ticker)
+vals = readYahooAdjClose(dates, ticker)
 
 end
