@@ -137,6 +137,7 @@ include(joinpath(Pkg.dir("EconDatasets"), "src/getDataset/", "getSP500.jl"))
 - Data sets downloaded by functions
   - FFF
   - UMD
+  - Indices
 - Data sets downloaded by scripts
   - SP500
   - SP500Ticker
