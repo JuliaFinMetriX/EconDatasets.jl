@@ -115,6 +115,10 @@ adequately.
 | UMD         | Fama French momentum portfolio           |
 | FFF         | Fama French factors                      |
 | SP500Ticker | SP500 ticker symbols from Wikipedia      |
+| Indices     | Major stock price indices                |
+|-------------+------------------------------------------|
+
+
 
 * Data sets to be downloaded first
 
@@ -146,6 +150,9 @@ include(joinpath(Pkg.dir("EconDatasets"), "src/getDataset/", "getSP500.jl"))
 | ~readYahooFinance~  | see [[http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/][blog post]]      |
 | ~readYahooAdjClose~ | see [[http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/][blog post]]      |
 | ~getAdjClose~       |                    |
+|---------------------+--------------------|
+
+
 
 * Acknowledgement
 
