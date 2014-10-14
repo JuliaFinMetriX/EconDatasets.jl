@@ -280,12 +280,26 @@ adequately.
 <td class="left">Indices</td>
 <td class="left">Major stock price indices</td>
 </tr>
+
+<tr>
+<td class="left">Treasuries</td>
+<td class="left">US Treasury rates, several maturities</td>
+</tr>
 </tbody>
 </table>
+
+<p>
+From these data sets, only the following ones are already included in
+the repository: 
+</p>
+<ul class="org-ul">
+<li>Sectors
+</li>
+<li>SP500Ticker
+</li>
+</ul>
 </div>
 </div>
-
-
 
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3"><span class="section-number-2">3</span> Data sets to be downloaded first</h2>
@@ -315,13 +329,15 @@ the script with <code>include</code>:
 </li>
 <li>Indices
 </li>
+<li>Treasuries
+</li>
 </ul>
 </li>
 <li>Data sets downloaded by scripts
 <ul class="org-ul">
-<li>SP500
+<li>SP500 (due to parallel computing)
 </li>
-<li>SP500Ticker
+<li>SP500Ticker (due to Gumbo package usage)
 </li>
 </ul>
 </li>
@@ -371,11 +387,15 @@ the script with <code>include</code>:
 <td class="left"><code>getAdjClose</code></td>
 <td class="left">&#xa0;</td>
 </tr>
+
+<tr>
+<td class="left"><code>readUSTreasuries</code></td>
+<td class="left">&#xa0;</td>
+</tr>
 </tbody>
 </table>
 </div>
 </div>
-
 
 
 <div id="outline-container-sec-5" class="outline-2">
