@@ -17,6 +17,11 @@ println("--------------------------------")
 println("--------------------------------\n")
 getDataset("UMD")
 
+println("\n   test getting Treasury rates\n")
+println("--------------------------------")
+println("--------------------------------\n")
+getDataset("Treasuries")
+
 println("\n   test getting SP500Ticker\n")
 println("--------------------------------")
 println("--------------------------------\n")

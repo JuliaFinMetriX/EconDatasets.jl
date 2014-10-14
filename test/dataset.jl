@@ -17,6 +17,9 @@ sectors = EconDatasets.dataset("Sectors")
 umd = EconDatasets.dataset("UMD")
 fff = EconDatasets.dataset("FFF")
 
+## try loading treasury rates
+intRates = EconDatasets.dataset("Treasuries")
+
 ## try loading sp500 data
 ticker = EconDatasets.dataset("SP500Ticker")
 sp500 = EconDatasets.dataset("SP500")
