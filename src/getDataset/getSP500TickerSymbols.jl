@@ -1,4 +1,4 @@
-using Gumbo
+using Gumbo # can not be loaded inside of function => use script
 
 url = "http://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 htmlContent = download(url) |>
