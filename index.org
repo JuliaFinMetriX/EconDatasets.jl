@@ -116,9 +116,13 @@ adequately.
 | FFF         | Fama French factors                      |
 | SP500Ticker | SP500 ticker symbols from Wikipedia      |
 | Indices     | Major stock price indices                |
+| Treasuries  | US Treasury rates, several maturities    |
 |-------------+------------------------------------------|
 
-
+From these data sets, only the following ones are already included in
+the repository: 
+- Sectors
+- SP500Ticker
 
 * Data sets to be downloaded first
 
@@ -138,9 +142,10 @@ include(joinpath(Pkg.dir("EconDatasets"), "src/getDataset/", "getSP500.jl"))
   - FFF
   - UMD
   - Indices
+  - Treasuries
 - Data sets downloaded by scripts
-  - SP500
-  - SP500Ticker
+  - SP500 (due to parallel computing)
+  - SP500Ticker (due to Gumbo package usage)
 
 * Table of functions to interactively download data
 
@@ -151,8 +156,8 @@ include(joinpath(Pkg.dir("EconDatasets"), "src/getDataset/", "getSP500.jl"))
 | ~readYahooFinance~  | see [[http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/][blog post]]      |
 | ~readYahooAdjClose~ | see [[http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/][blog post]]      |
 | ~getAdjClose~       |                    |
+| ~readUSTreasuries~  |                    |
 |---------------------+--------------------|
-
 
 
 * Acknowledgement
