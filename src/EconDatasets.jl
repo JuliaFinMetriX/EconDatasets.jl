@@ -1,13 +1,13 @@
 ## list packages that shall be automatically loaded
 using DataFrames
-using Base.Dates
+using Dates
 using TimeData
 
 module EconDatasets
 
 
 using DataFrames
-using Base.Dates
+using Dates
 using TimeData
 
 export dataset,

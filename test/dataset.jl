@@ -2,6 +2,7 @@ module TestDataset
 
 using Base.Test
 using EconDatasets
+using Dates
 
 println("\n Running dataset tests\n")
 

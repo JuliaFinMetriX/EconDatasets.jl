@@ -3,6 +3,7 @@
 using EconDatasets
 using Base.Test
 using DataFrames
+using Dates
 
 # write your own tests here
 tests = [

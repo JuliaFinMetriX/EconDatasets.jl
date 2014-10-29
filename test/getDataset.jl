@@ -3,6 +3,7 @@
 using EconDatasets
 using Base.Test
 using DataFrames
+using Dates
 
 ## try to get all data sets
 println("\n Running getDataset tests:")

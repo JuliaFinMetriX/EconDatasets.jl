@@ -2,6 +2,7 @@ module TestDataset
 
 using Base.Test
 using EconDatasets
+using Dates
 
 dates = Date(1960, 11, 26):Date(2014, 7, 23)
 ticker = "^GDAXI"
