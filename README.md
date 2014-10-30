@@ -5,6 +5,11 @@
 
 Accessing econometric datasets in Julia.
 
-**Installation**: at the Julia REPL: `Pkg.clone("git://github.com/JuliaFinMetriX/EconDatasets.jl.git")`
+**Installation**: at the Julia REPL: `Pkg.add("EconDatasets")`
 
 **Documentation**: [here](http://juliafinmetrix.github.io/EconDatasets.jl/).
+
+**JuliaFinMetriX**: [here](http://juliafinmetrix.github.io/).
+
+**JuliaFinMetriX standard library**: [here](http://juliafinmetrix.readthedocs.org/en/latest/index.html).
+
