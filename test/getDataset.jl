@@ -23,6 +23,11 @@ println("--------------------------------")
 println("--------------------------------\n")
 getDataset("Treasuries")
 
+println("\n   test getting DieboldLi\n")
+println("--------------------------------")
+println("--------------------------------\n")
+getDataset("DieboldLi")
+
 println("\n   test getting SP500Ticker\n")
 println("--------------------------------")
 println("--------------------------------\n")

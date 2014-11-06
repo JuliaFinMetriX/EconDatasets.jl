@@ -117,6 +117,7 @@ adequately.
 | SP500Ticker | SP500 ticker symbols from Wikipedia      |
 | Indices     | Major stock price indices                |
 | Treasuries  | US Treasury rates, several maturities    |
+| DieboldLi   | fixed-maturity yields used in Diebold-Li |
 |-------------+------------------------------------------|
 
 From these data sets, only the following ones are already included in
@@ -143,6 +144,7 @@ include(joinpath(Pkg.dir("EconDatasets"), "src/getDataset/", "getSP500.jl"))
   - UMD
   - Indices
   - Treasuries
+  - DieboldLi
 - Data sets downloaded by scripts
   - SP500 (due to parallel computing)
   - SP500Ticker (due to Gumbo package usage)

@@ -30,6 +30,7 @@ include("getDataset/getIndices.jl")
 include("getDataset/getFFF.jl")
 include("getDataset/getUMD.jl")
 include("getDataset/getTreasuries.jl")
+include("getDataset/getDieboldLi.jl")
 
 # don't include: script would run on each startup!
 ## include("getDataset/getSP500.jl")

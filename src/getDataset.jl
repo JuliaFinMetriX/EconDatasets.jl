@@ -9,7 +9,8 @@ function getDataset(dataset_name::String)
                 "SP500Ticker" => :(include(string($pathToScripts,
                                                   "getSP500TickerSymbols.jl"))),
                 "Indices" => :(EconDatasets.getIndices()),
-                "Treasuries" => :(EconDatasets.getTreasuries())
+                "Treasuries" => :(EconDatasets.getTreasuries()),
+                "DieboldLi" => :(EconDatasets.getDieboldLi())
                 ]
 
     downloadFunc = fileDict[dataset_name]

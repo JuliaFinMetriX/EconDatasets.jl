@@ -21,6 +21,9 @@ fff = EconDatasets.dataset("FFF")
 ## try loading treasury rates
 intRates = EconDatasets.dataset("Treasuries")
 
+## try loading Diebold-Li interest rates
+yields = EconDatasets.dataset("DieboldLi")
+
 ## try loading sp500 data
 ticker = EconDatasets.dataset("SP500Ticker")
 sp500 = EconDatasets.dataset("SP500")
