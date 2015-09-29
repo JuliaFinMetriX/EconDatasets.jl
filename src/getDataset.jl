@@ -8,6 +8,8 @@ function getDataset(dataset_name::String)
                                             "getSP500.jl"))),
                 "SP500Ticker" => :(include(string($pathToScripts,
                                                   "getSP500TickerSymbols.jl"))),
+                "SP500Industries" => :(include(string($pathToScripts,
+                                                      "getSP500TickerSymbols.jl"))),
                 "Indices" => :(EconDatasets.getIndices()),
                 "Treasuries" => :(EconDatasets.getTreasuries()),
                 "DieboldLi" => :(EconDatasets.getDieboldLi())

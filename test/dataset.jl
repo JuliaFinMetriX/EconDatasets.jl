@@ -26,6 +26,7 @@ yields = EconDatasets.dataset("DieboldLi")
 
 ## try loading sp500 data
 ticker = EconDatasets.dataset("SP500Ticker")
+industries = EconDatasets.dataset("SP500Industries")
 sp500 = EconDatasets.dataset("SP500")
 
 

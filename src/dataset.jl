@@ -7,6 +7,7 @@ function dataset(dataset_name::String)
                 "UMD" => "UMD.csv",
                 "FFF" => "FFF.csv",
                 "SP500Ticker" => "SP500TickerSymbols.csv",
+                "SP500Industries" => "SP500Industries.csv",
                 "Indices" => "Indices.csv",
                 "Treasuries" => "Treasuries.csv",
                 "DieboldLi" => "DieboldLi.csv"
@@ -21,6 +22,7 @@ function dataset(dataset_name::String)
                "UMD" => :(readTimedata($filename)),
                "FFF" => :(readTimedata($filename)),
                "SP500Ticker" => :(readcsv($filename)),
+               "SP500Industries" => :(readtable($filename)),
                "Indices" => :(readTimedata($filename)),
                "Treasuries" => :(readTimedata($filename)),
                "DieboldLi" => :(readTimedata($filename))

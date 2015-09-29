@@ -33,6 +33,11 @@ println("--------------------------------")
 println("--------------------------------\n")
 getDataset("SP500Ticker")
 
+println("\n   test getting SP500Industries\n")
+println("--------------------------------")
+println("--------------------------------\n")
+getDataset("SP500Industries")
+
 println("\n   test getting index prices\n")
 println("--------------------------------")
 println("--------------------------------\n")
