@@ -34,11 +34,10 @@ t1 = time()
 elapsedTime = t1-t0
 mins, secs = divrem(elapsedTime, 60)
 
-println("elapsed time: ", int(mins), " minutes, ", ceil(secs), "
-seconds")
-
 valsTn = convert(Timenum, vals)
 pathToStore = joinpath(Pkg.dir("EconDatasets"), "data", "SP500.csv")
 writeTimedata(pathToStore, valsTn)
+
+println("elapsed time: ", int(mins), " minutes, ", ceil(secs), " seconds")
 
 rmprocs(procIds)
