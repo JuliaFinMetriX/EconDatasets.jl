@@ -147,9 +147,10 @@ function downloadAndRemove(url::ASCIIString)
 
     run(`unzip $filepath -d $dirName`)
 
-    # get filename of unzipped file
+    # get filename of unzipped file; cut off _TXT from filename
     extInd = basename(url) |>
-             x -> searchindex(x, ".")
+             x -> searchindex(x, ".") |>
+  				 x -> x - 4  
 
     
     # read in file
