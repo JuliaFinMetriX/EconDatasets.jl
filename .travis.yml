@@ -10,6 +10,7 @@ before_install:
   - sudo apt-get install libpcre3-dev julia -y
 script:
   - julia -e 'versioninfo()'
+  - julia -e 'Pkg.clone("https://github.com/JuliaFinMetriX/JFinM_Charts.git")'
   - julia -e 'Pkg.init(); Pkg.clone("https://github.com/JuliaFinMetriX/EconDatasets.jl.git")'
   - julia -e 'Pkg.update()'
   - julia --code-coverage ./test/runtests.jl
