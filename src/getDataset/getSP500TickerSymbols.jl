@@ -18,7 +18,7 @@ parsehtml
 function accessTableEntry(htmlContent::HTMLDocument, ii::Int)
     # old wikipedia page settings
     # return htmlContent.root[2][3][4][4][7][1][ii+1][1][1][1].text
-    return htmlContent.root[2][3][5][4][6][1][ii+1][1][1][1].text
+    return htmlContent.root[2][3][5][4][7][1][ii+1][1][1][1].text
 end
 
 companies = UTF8String[]
