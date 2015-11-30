@@ -11,6 +11,7 @@
 #+OPTIONS: toc:yes
 #+OPTIONS: html-doctype:html5
 
+#+HTML_HEAD:  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" /> 
 #+HTML_HEAD: <meta charset='utf-8'>
 #+HTML_HEAD: <meta http-equiv="X-UA-Compatible" content="chrome=1">
 #+HTML_HEAD: <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -77,10 +78,10 @@ similar to the way that the [[https://github.com/johnmyleswhite/RDatasets.jl][RD
 standard data sets that are available in R.
 
 The problem with some econometric data sets, however, is that although
-data is freely available on the web, it is not allowed to redistribute
-it. Hence, some of the data sets are not shipped automatically with
-the package, but they need to be downloaded into the package's data
-directory first.
+data is freely available at the web, it is not allowed to redistribute
+the data set. Hence, some of the data sets are not shipped
+automatically with the package, but they need to be downloaded into
+the package's data directory first.
 
 Once a given data set is downloaded, it can be loaded in Julia with a
 syntax similar to ~RDatasets~:
@@ -90,38 +91,99 @@ using EconDatasets
 sectors = dataset("Sectors")
 #+END_SRC
 
-For any data that does not automatically ship with the package, one
-needs to call ~getDataset~ first in order to download the data into
-the package's data directory. This way it will be accessible for
-future use through function ~dataset~ again.
+In order to download a given data set, one needs to use call function
+~getDataset~ first. This way, data is downloaded into the data
+directory of the package, making it accessible for future use with
+function ~dataset~.
 #+BEGIN_SRC julia
-getDataset("SP500")
+getDataset("FFF") # Fama French factors
 #+END_SRC
 
 In addition, there also exist functions that directly load data into
 an interactive Julia session, without storing them on disk for future
 use. For some of these data sets, however, some minor manual
-interaction might be required to label and process the data correctly.
+interaction might be required to label and process the data
+adequately. 
 
 
-* Main data sets
+* Table of data sets
 
-The following data sets are accessible through function ~dataset~. 
-- ~Sectors~: sector affiliations for SP500 components
+| Name        | Description                              |
+|-------------+------------------------------------------|
+| Sectors     | Sector affiliations for SP500 components |
+| SP500       | Stock price data for SP500 components    |
+| UMD         | Fama French momentum portfolio           |
+| FFF         | Fama French factors                      |
+| SP500Ticker | SP500 ticker symbols from Wikipedia      |
+| [[http://juliafinmetrix.github.io/EconDatasets.jl/data_description_indices.md][Indices]]     | Major stock price indices                |
+| Treasuries  | US Treasury rates, several maturities    |
+| DieboldLi   | fixed-maturity yields used in Diebold-Li |
+|-------------+------------------------------------------|
 
-* Interactively accessible data sets
+From these data sets, only the following ones are already included in
+the repository: 
+- Sectors
+- SP500Ticker
 
-In addition, the following functions can be used to interactively
-download various data sets.  
-- ~readFamaFrenchRaw~: data provided by [[http://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html][Kenneth R. French]] ([[http://nbviewer.ipython.org/github/JuliaFinMetriX/EconDatasets.jl/blob/master/ijulia/readFamaFrenchRaw.ipynb][ijulia
-  usage instructions]]) 
+* Data sets to be downloaded first
 
-* Licensing and intellectual property
+The following data sets do not ship with the package, as they may not
+be re-distributed. Hence, they need to be downloaded first. This can
+be done with function ~getDataset~. Some of these data sets will call
+a script and not a function, so they will create some variables in
+your workspace. Also, if running the scripts through the high level
+function ~getDataset~ causes an error, it still might work if you run
+the script with ~include~:
 
-Similar to [[https://github.com/johnmyleswhite/RDatasets.jl][RDatasets]]: If you know that one of the datasets released
-here should not be released publicly or if you know that a data set
-can only be released under a different license, please contact me so
-that I can remove the data set from this repository.
+#+BEGIN_SRC julia
+include(joinpath(Pkg.dir("EconDatasets"), "src/getDataset/", "getSP500.jl"))
+#+END_SRC
+
+- Data sets downloaded by functions
+  - FFF
+  - UMD
+  - Indices
+  - Treasuries
+  - DieboldLi
+- Data sets downloaded by scripts
+  - SP500 (due to parallel computing)
+  - SP500Ticker (due to Gumbo package usage)
+
+* Table of functions to interactively download data
+
+| Name                | Description        |
+|---------------------+--------------------|
+| ~readFamaFrench~    |                    |
+| ~readFamaFrenchRaw~ | see [[http://nbviewer.ipython.org/github/JuliaFinMetriX/EconDatasets.jl/blob/master/ijulia_tutorials/readFamaFrenchRaw.ipynb][ijulia example]] |
+| ~readYahooFinance~  | see [[http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/][blog post]]      |
+| ~readYahooAdjClose~ | see [[http://grollchristian.wordpress.com/2014/09/05/sp500-data-download-julia/][blog post]]      |
+| ~getAdjClose~       |                    |
+| ~readUSTreasuries~  |                    |
+|---------------------+--------------------|
+
+
+* Acknowledgement
+
+Of course, any package can only be as good as the individual parts
+that it builds on. Accordingly, I'd like to thank all people that
+were involved in the development of all the functions that were made
+ready to use for me to build this package upon. In particular, I want
+to thank the developers of
+- the *Julia language*, for their continuous and tremendous efforts
+  during the creation of this free, fast and highly flexible
+  programming language!
+- the *DataFrames* package, which definitely provides the best
+  representation for general types of data in data analysis. It's a
+  role model that every last bit of code of ~TimeData~ depends on, and
+  the interface that every statistics package should use.
+- the *Datetime* package, which is a thoughtful implementation of
+  dates, time and durations, and the backbone of all time components
+  in ~TimeData~.
+- the *TimeSeries* package, which follows a different approach to
+  handling time series data. Having a quite similar goal in mind, the
+  package was a great inspiration for me, and occasionally I even
+  could borrow parts of code from it (for example, from an old version
+  of function ~readtime~).
 
 #+BEGIN_SRC julia :exports none :results output :tangle test/doctests.jl
 end
