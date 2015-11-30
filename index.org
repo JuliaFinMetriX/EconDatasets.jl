@@ -115,7 +115,7 @@ adequately.
 | UMD         | Fama French momentum portfolio           |
 | FFF         | Fama French factors                      |
 | SP500Ticker | SP500 ticker symbols from Wikipedia      |
-| Indices     | Major stock price indices                |
+| [[http://juliafinmetrix.github.io/EconDatasets.jl/data_description_indices.md][Indices]]     | Major stock price indices                |
 | Treasuries  | US Treasury rates, several maturities    |
 | DieboldLi   | fixed-maturity yields used in Diebold-Li |
 |-------------+------------------------------------------|
