@@ -1,5 +1,5 @@
 function getIndices()
-    dates = Date(1920,1,1):Date(2014,10,1)
+    dates = Date(1920,1,1):Date(2015,9,25)
 
     ## measure time
     t0 = time()
