@@ -1,21 +1,16 @@
 ## list packages that shall be automatically loaded
-using DataFrames
-using Dates
-using TimeData
-
 module EconDatasets
 
-
 using DataFrames
-using Dates
-using TimeData
+using TimeSeries
+using Base.Dates
 
 export dataset,
 	getDataset,
 	readFamaFrenchRaw,
-   readUSTreasuries,
-   readYahooAdjClose,
-   readYahooFinance
+	readUSTreasuries,
+	readYahooAdjClose,
+	readYahooFinance
 
 ## load interactive functions
 include("readFamaFrenchRaw.jl")

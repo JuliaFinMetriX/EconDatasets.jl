@@ -1,19 +1,19 @@
 function readYahooAdjClose(dates::StepRange,
-                          ticker::Array{ASCIIString, 1},
+                          ticker::Array{String, 1},
                           freq=:d)
 
     ## parallelized version for multiple stocks
-    
+
     nStocks = length(ticker)
     allStocks = @parallel (joinSortedIdx_outer) for ii=1:nStocks
         getAdjClose(dates, ticker[ii], freq)
     end
-        
+
     return allStocks
 end
 
 function getAdjClose(dates::StepRange,
-                            ticker::ASCIIString,
+                            ticker::String,
                             freq=:d)
     stock = readYahooFinance(dates, ticker, freq)
 
@@ -29,16 +29,16 @@ function getAdjClose(dates::StepRange,
 end
 
 function readYahooFinance(dates::StepRange,
-                          ticker::ASCIIString,
+                          ticker::String,
                           freq=:d)
-    
+
     #############################
     ## get download parameters ##
     #############################
-    
+
     ## get download urls
     urls = getUrls(dates, [ticker], freq)
-    
+
     ###################
     ## download data ##
     ###################
@@ -53,13 +53,13 @@ function readYahooFinance(dates::StepRange,
 end
 
 function getUrls(dates::StepRange,
-                 ticker::Array{ASCIIString, 1},
+                 ticker::Array{String, 1},
                  freq)
     nStocks = length(ticker)
-    
-    urls = Array(ASCIIString, nStocks)
+
+    urls = Array(String, nStocks)
     (bd, bm, by, ed, em, ey) = getDates(dates)
-    
+
     for ii=1:nStocks
         urls[ii] = string("http://real-chart.finance.yahoo.com/table.csv?s=",
                           ticker[ii],
@@ -74,11 +74,11 @@ function getDates(dates::StepRange)
     ## get start and end date
     startDate = dates[1]
     endDate = dates[end]
-    
+
     ## decompose dates
     (bd, bm, by) = (day(startDate), month(startDate), year(startDate))
     (ed, em, ey) = (day(endDate), month(endDate), year(endDate))
-    
+
     (lpad(string(bd-1), 2, "0"),
      lpad(string(bm-1), 2, "0"),
      string(by),
@@ -100,5 +100,3 @@ end
 ##
 ## another function that returns adj_closing prices for array of
 ## ticker symbols in one large
-
-

@@ -1,11 +1,11 @@
 dates = Date(1960,1,1):Date(2015,9,25)
 
 procIds = addprocs(3)
-    
+
 @everywhere using DataFrames
-@everywhere using TimeData
+@everywhere using TimeSeries
 @everywhere using EconDatasets
-    
+
     println("\nData will be downloaded starting ", dates[1], " and ending ",
             dates[end], ".\n\n",
             "In order to change the time period,",
@@ -22,8 +22,8 @@ procIds = addprocs(3)
 ## load WikiPedia stock ticker symbols
 constituents = readcsv(joinpath(Pkg.dir("EconDatasets"), "data",
                                 "SP500TickerSymbols.csv"))
-    
-tickerSymb = ASCIIString[ticker for ticker in constituents]
+
+tickerSymb = String[ticker for ticker in constituents]
 
 ## measure time
 t0 = time()
@@ -36,7 +36,7 @@ mins, secs = divrem(elapsedTime, 60)
 
 valsTn = convert(Timenum, vals)
 pathToStore = joinpath(Pkg.dir("EconDatasets"), "data", "SP500.csv")
-writeTimedata(pathToStore, valsTn)
+writetimearray(valsTn, pathToStore)
 
 println("elapsed time: ", int(mins), " minutes, ", ceil(secs), " seconds")
 
