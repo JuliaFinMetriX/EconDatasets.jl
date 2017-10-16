@@ -10,7 +10,8 @@ function dataset(dataset_name::String)
                 "SP500Industries" => "SP500Industries.csv",
                 "Indices" => "Indices.csv",
                 "Treasuries" => "Treasuries.csv",
-                "DieboldLi" => "DieboldLi.csv"
+                "DieboldLi" => "DieboldLi.csv",
+                "IndustryPfs" => "IndustryPfs.csv"
                 )
 
     ## get filename
@@ -24,8 +25,9 @@ function dataset(dataset_name::String)
                "SP500Ticker" => :(readcsv($filename)),
                "SP500Industries" => :(readtable($filename)),
                "Indices" => :(readTimedata($filename)),
-               "Treasuries" => :(readTimedata($filename)),
-               "DieboldLi" => :(readTimedata($filename))
+               "Treasuries" => :(readtimearray($filename)),
+               "DieboldLi" => :(readtimearray($filename)),
+               "IndustryPfs" => :(readtimearray($filename))
                )
 
     cmd = cmdDict[dataset_name]

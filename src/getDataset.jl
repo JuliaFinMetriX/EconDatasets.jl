@@ -12,7 +12,8 @@ function getDataset(dataset_name::String)
                                                       "getSP500TickerSymbols.jl"))),
                 "Indices" => :(EconDatasets.getIndices()),
                 "Treasuries" => :(EconDatasets.getTreasuries()),
-                "DieboldLi" => :(EconDatasets.getDieboldLi())
+                "DieboldLi" => :(EconDatasets.getDieboldLi()),
+                "IndustryPfs" => :(EconDatasets.getIndustryPortfolios())
                 )
 
     downloadFunc = fileDict[dataset_name]

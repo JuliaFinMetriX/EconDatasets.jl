@@ -6,43 +6,49 @@ using TimeSeries
 
 cd("/home/chris/scalable/julia/EconDatasets.jl/")
 
-url = "http://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/38_Industry_Portfolios_daily_TXT.zip"
+# download data
+getDataset("IndustryPfs")
 
-dataArray, descriptions, varnames = readFamaFrenchRaw(url)
+# load data
+xxRets = dataset("IndustryPfs")
 
-varnames
-
-
-data = dataArray[1]
-rename(data, split(varnames))
-
-dataVals = data.values
-dataVals[dataVals .== -99.99] = 0
-
-cleanData = TimeSeries.TimeArray(data.timestamp, dataVals, split(varnames))
-
-fieldnames(ReturnType())
-
-
-
-
-
-
+# store with information regarding the return type
 retType = ReturnType(true, false, Dates.Day(1), false)
-rets = Returns(cleanData, retType)
+rets = Returns(xxRets, retType)
 
-aggrPerfs = aggregateReturns(rets, true)
+# derive associated prices
+synthPrices = rets2prices(rets, 1.0, true)
+logSynthPrices = getLogPrices(synthPrices)
 
-aggrLogPerfs = TimeSeries.TimeArray(aggrPerfs.timestamp, log.(aggrPerfs.values + 1), aggrPerfs.colnames)
+function getLogPrices(prices::TimeSeries.TimeArray)
+    return TimeSeries.TimeArray(prices.timestamp, log.(prices.values), prices.colnames)
+end
 
-DynAssMgmt.tsPlot(aggrLogPerfs)
+# plot prices over time
+DynAssMgmt.tsPlot(logSynthPrices)
 
-ewmaEstimator = EWMA(0.95, 0.99)
-
+# visualize universe
+ewmaEstimator = EWMA(1, 1)
 thisUniv = apply(ewmaEstimator, rets)
-
 Plots.plot(thisUniv, rets.data.colnames)
 
 
-xx = dataset("Sectors")
-xx = dataset("UMD")
+## define efficient frontier / diversfication frontier strategies
+DynAssMgmt.getUnivExtrema(thisUniv)
+sigTargets = [linspace(1., 1.2, 15)...]
+
+# get efficient frontier
+effFrontStrats = EffFront(10)
+effFrontWgts = apply(effFrontStrats, thisUniv)
+
+# get as strategy types
+diversTarget = 0.8
+divFrontStrats = DivFront(diversTarget, sigTargets)
+divFrontWgts = apply(divFrontStrats, thisUniv)
+
+## mu/sigma results for full series of portfolios
+DynAssMgmt.vizPfSpectrum(thisUniv, effFrontWgts[:])
+DynAssMgmt.vizPfSpectrum!(thisUniv, divFrontWgts[:])
+
+##
+DynAssMgmt.wgtsOverStrategies(divFrontWgts)
